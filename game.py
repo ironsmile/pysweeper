@@ -23,3 +23,15 @@ class Game:
 
     def flag_position(self, position):
         self.board.flag_position(position)
+
+    def is_opened(self, position):
+        return self.board.is_opened(position)
+
+    def is_flagged(self, position):
+        return self.board.is_flagged(position)
+
+    def dimensions(self):
+        return (self.board.width, self.board.height)
+
+    def value_at_position(self, position):
+        return self.board[position].value
