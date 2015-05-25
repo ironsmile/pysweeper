@@ -1,5 +1,6 @@
 from enum import Enum
 from itertools import product
+from random import randint
 
 
 class Cell(Enum):
@@ -50,3 +51,9 @@ class Board:
 
     def is_flagged(self, position):
         return position in self.flagged
+
+    def generate(self, percent):
+        for x in range(self.width):
+            for y in range(self.height):
+                if randint(1, 100/percent) == 1:
+                    self.mines.add((x, y))
