@@ -38,3 +38,15 @@ class Board:
 
     def flagged_neighbours(self, position):
         return len(self.neighbours_of(position) & self.flagged)
+
+    def open_position(self, position):
+        self.opened.add(position)
+
+    def is_opened(self, position):
+        return position in self.opened
+
+    def flag_position(self, position):
+        self.flagged.add(position)
+
+    def is_flagged(self, position):
+        return position in self.flagged

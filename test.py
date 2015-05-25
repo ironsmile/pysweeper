@@ -28,6 +28,16 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.flagged_neighbours((1, 1)), 2)
         self.assertEqual(board.flagged_neighbours((2, 0)), 1)
 
+    def test_open_position(self):
+        board = Board(3, 3)
+        board.open_position((1, 1))
+        self.assertTrue(board.is_opened((1, 1)))
+
+    def test_flag_position(self):
+        board = Board(3, 3)
+        board.flag_position((1, 1))
+        self.assertTrue(board.is_flagged((1, 1)))
+
 
 if __name__ == '__main__':
     unittest.main()
