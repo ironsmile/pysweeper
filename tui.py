@@ -34,3 +34,5 @@ class UserInterface:
             self.game.open_position(position)
         elif action == 'flag':
             self.game.flag_position(position)
+        elif action == 'neighbours':
+            self.game.open_neighbours(position)

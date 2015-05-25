@@ -21,6 +21,13 @@ class Game:
             self.state = State.lost
             return
 
+    def open_neighbours(self, position):
+        cell = self.board[position]
+        flagged_neighbours = self.board.flagged_neighbours(position)
+        if flagged_neighbours == cell.value:
+            for neighbour in self.board.neighbours_of(position):
+                self.open_position(neighbour)
+
     def flag_position(self, position):
         self.board.flag_position(position)
 
