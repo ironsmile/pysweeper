@@ -4,7 +4,7 @@ from random import randint
 
 
 class Cell(Enum):
-    mine = '*'
+    mine = '☢'
     one = 1
     two = 2
     three = 3
@@ -47,7 +47,10 @@ class Board:
         return position in self.opened
 
     def flag_position(self, position):
-        self.flagged.add(position)
+        if position in self.flagged:
+            self.flagged.remove(position)
+        else:
+            self.flagged.add(position)
 
     def is_flagged(self, position):
         return position in self.flagged
