@@ -1,21 +1,30 @@
+#!/usr/bin/env python
+import argparse
+
 from board import Board
-from game import Game, State
-from tui import UserInterface
+from game import Game
+import tui
+import gui
 
-board = Board(10, 10)
-board.generate(20)
+def main():
 
-game = Game(board)
-ui = UserInterface(game)
+    parser = argparse.ArgumentParser(description='Pysweeper game.')
+    parser.add_argument('--tui', default=False, action='store_true',
+                        help='Starts the game in text mode')
+    args = parser.parse_args()
 
-ui.print_board()
-while game.state is State.running:
-    ui.parse_input(input('move: '))
-    ui.print_board()
+    board = Board(10, 10)
+    board.generate(20)
 
-if game.state is State.lost:
-    print(':(')
-elif game.state is State.won:
-    print(':) CONGRATS!')
-else:
-    print('QUITTER!')
+    game = Game(board)
+
+    if args.tui:
+        ui = tui.UserInterface(game)
+    else:
+        ui = gui.UserInterface(game)
+
+    ui.main_loop()
+
+if __name__ == '__main__':
+    main()
+

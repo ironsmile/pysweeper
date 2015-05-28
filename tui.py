@@ -36,3 +36,16 @@ class UserInterface:
             self.game.flag_position(position)
         elif action == 'neighbours':
             self.game.open_neighbours(position)
+
+    def main_loop(self):
+        self.print_board()
+        while self.game.state is State.running:
+            self.parse_input(input('move: '))
+            self.print_board()
+
+        if self.game.state is State.lost:
+            print(':(')
+        elif self.game.state is State.won:
+            print(':) CONGRATS!')
+        else:
+            print('QUITTER!')
